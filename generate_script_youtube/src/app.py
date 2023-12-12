@@ -23,15 +23,15 @@ with st.sidebar:
 
 topic = st.text_input('Enter a topic:', value='')
 if st.button("Search") and topic != "":
-    #try:
-    model = ModelWrapper(
-        openai_api_key=openai_api_key,
-        temperature=temperature,
-        topic=topic
-    )
+    try:
+        model = ModelWrapper(
+            openai_api_key=openai_api_key,
+            temperature=temperature,
+            topic=topic
+        )
 
-    st.write(model.wrapper())
-    #except openai.RateLimitError:
-    #    st.error('Error: Rate limit exceeded. Please try again later.', icon='⚠️')
-    #except Exception as e:
-    #    st.error(f'Error: {e}', icon='⚠️')
+        st.write(model.wrapper())
+    except openai.RateLimitError:
+        st.error('Error: Rate limit exceeded. Please try again later.', icon='⚠️')
+    except Exception as e:
+        st.error(f'Error: {e}', icon='⚠️')
